@@ -4,9 +4,9 @@ const http = require("http").Server(server);
 const io = require("socket.io")(http);
 
 server.use(express.static("public"));
-
-http.listen(3000, () => {
-  console.log("Server started at: 3000");
+const port = process.env.PORT || 3000;
+http.listen(port, () => {
+  console.log(`Server started at: ${port}`);
 });
 
 server.get("/", (req, res) => {
@@ -23,7 +23,7 @@ io.on("connection", async (socket) => {
   socket.on("signaling", (data) => {
     io.to(data.toId).emit("signaling", { fromId: socket.id, ...data });
   });
-    socket.on("disconnect", () => {
-      io.sockets.emit("player-left", socket.id);
-    });
+  socket.on("disconnect", () => {
+    io.sockets.emit("player-left", socket.id);
+  });
 });
