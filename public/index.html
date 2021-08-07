@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Phaser 3 + WebRTC POC DEMO</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 800px;
+            height: 600px;
+            position: relative;
+        }
+
+        #game-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* opacity: 0.8; */
+        }
+
+        .stack-top {
+            z-index: 9;
+            height: 25% !important;
+        }
+
+        #video-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .videoStyle {
+            height: 120px;
+            opacity: 1 !important;
+            margin: 10px 10px;
+        }
+
+        video {
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="game-container"></div>
+        <div id="game-container" class="stack-top">
+            <div id="video-container" class="videos"> 
+                <video id="localVideo" class="videoStyle" autoplay muted playsinline>
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.16.2/dist/phaser.js"></script>
+    <!-- My script -->
+    <script src="./js/gameObject/remotePlayer.js"></script>
+    <script src="./js/scene.js" type="module"></script>
+    <script src="./js/signaling.js"></script>
+</body>
+
+</html>
