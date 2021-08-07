@@ -44,7 +44,10 @@ function startLocalStream() {
 }
 
 function connectSocketToSignaling() {
-  const socket = io.connect("http://localhost:3000", { secure: true });
+  // const socket = io.connect("http://localhost:3000", { secure: true });
+  const socket = io.connect("https://phaserwebrtc.herokuapp.com/", {
+    secure: true,
+  });
   socket.on("connect", () => {
     localUserId = socket.id;
     window.channel.setLocalId(localUserId);
